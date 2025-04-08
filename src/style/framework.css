@@ -39,14 +39,20 @@
 
       .icon {
         @apply w-4 h-4 mr-1
-        transition-transform ease-in-out duration-100;
+        transition-all ease-in-out duration-100;
       }
 
       &.pinned {
         .icon {
-          @apply rotate-135;
+          @apply rotate-135 fill-green-500;
         }
       }
     }
+  }
+
+  .separator {
+    @apply h-1/2 mx-0.5
+    rounded bg-neutral-300 dark:bg-neutral-700
+    transition-colors ease-in-out duration-100;
   }
 }

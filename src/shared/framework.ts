@@ -4,10 +4,6 @@ export type UseThemeFn = (options: {
   localStorageKey?: string;
 }) => UseThemeFnReturn;
 
-export interface TitlebarProps {
-  navigator: (path: `/${string}`) => void;
-}
-
 export type TitlebarOperationType =
   | "minimize"
   | "close"

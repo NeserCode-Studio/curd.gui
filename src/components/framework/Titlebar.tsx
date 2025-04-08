@@ -7,16 +7,16 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 
-import type { TitlebarProps } from "@/shared";
 import TitlebarOperations, {
   ThemeIcon,
 } from "@/components/framework/TitlebarOperations";
 import { useContext } from "react";
-import { ThemeContext } from "@/App";
+import { ThemeContext, NavigatorContext } from "@/App";
 import TitlebarTitle from "./TitlebarTitle";
 
-export default function Titlebar({ navigator }: TitlebarProps) {
+export default function Titlebar() {
   const { theme, setThemeMode } = useContext(ThemeContext);
+  const { navigator } = useContext(NavigatorContext);
 
   function toggleTheme() {
     if (theme === "dark") {

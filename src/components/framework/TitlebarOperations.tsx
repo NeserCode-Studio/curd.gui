@@ -4,8 +4,9 @@ import {
   SunIcon,
   MoonIcon,
   PaperClipIcon,
-} from "@heroicons/react/20/solid";
+} from "@heroicons/react/16/solid";
 import { ThemeContext } from "@/App";
+import { Separator } from "../ui/separator";
 import { useContext, useEffect } from "react";
 import { useLocalStorageState } from "ahooks";
 import { getCurrentWindow } from "@tauri-apps/api/window";
@@ -60,43 +61,46 @@ export default function TitlebarOperations() {
   }, [alwaysOnTop]);
 
   return (
-    <div className="title-bar-operations">
-      <span
-        className={[alwaysOnTop ? "pinned" : "", "operation"].join(" ")}
-        onMouseUp={() => {
-          handleOperation("always-on-top", setAlwaysOnTop, !alwaysOnTop);
-        }}
-      >
-        <PaperClipIcon className="icon" />
-      </span>
-      <span
-        className="operation"
-        onMouseUp={() => {
-          handleOperation(
-            "theme",
-            setThemeMode,
-            theme === "dark" ? "light" : "dark"
-          );
-        }}
-      >
-        <ThemeIcon />
-      </span>
-      <span
-        className="operation"
-        onMouseUp={() => {
-          handleOperation("minimize");
-        }}
-      >
-        <MinusIcon className="icon" />
-      </span>
-      <span
-        className="operation"
-        onMouseUp={() => {
-          handleOperation("close");
-        }}
-      >
-        <XMarkIcon className="icon" />
-      </span>
-    </div>
+    <>
+      <div className="title-bar-operations">
+        <Separator orientation="vertical" className="separator" />
+        <span
+          className={[alwaysOnTop ? "pinned" : "", "operation"].join(" ")}
+          onMouseUp={() => {
+            handleOperation("always-on-top", setAlwaysOnTop, !alwaysOnTop);
+          }}
+        >
+          <PaperClipIcon className="icon" />
+        </span>
+        <span
+          className="operation"
+          onMouseUp={() => {
+            handleOperation(
+              "theme",
+              setThemeMode,
+              theme === "dark" ? "light" : "dark"
+            );
+          }}
+        >
+          <ThemeIcon />
+        </span>
+        <span
+          className="operation"
+          onMouseUp={() => {
+            handleOperation("minimize");
+          }}
+        >
+          <MinusIcon className="icon" />
+        </span>
+        <span
+          className="operation"
+          onMouseUp={() => {
+            handleOperation("close");
+          }}
+        >
+          <XMarkIcon className="icon" />
+        </span>
+      </div>
+    </>
   );
 }
