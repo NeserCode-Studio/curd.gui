@@ -1,3 +1,8 @@
+export interface I18nTranslateOptions {
+  lang?: string;
+  key?: string;
+}
+
 export type ThemeType = "light" | "dark";
 export type UseThemeFnReturn = [ThemeType, (theme: ThemeType) => void];
 export type UseThemeFn = (options: {

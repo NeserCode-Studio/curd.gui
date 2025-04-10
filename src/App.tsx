@@ -11,9 +11,11 @@ import Settings from "@/views/Settings";
 import { useNavigate } from "react-router";
 import { useTheme } from "./composables";
 import { createContext } from "react";
-import { UseThemeFnReturn } from "./shared";
 import { ScrollArea } from "./components/ui/scroll-area";
 import { useLocalStorageState } from "ahooks";
+import { I18nContext, useI18nLogic } from "@/composables/useI18n";
+
+import type { UseThemeFnReturn } from "./shared";
 
 /* Context Provide */
 const ThemeContext = createContext<{
@@ -37,35 +39,42 @@ const TitleContext = createContext<{
 });
 
 function App() {
+  /* I18n */
+  const { lang, t, setLanguage } = useI18nLogic();
+  /* Navigator */
   const navigate = useNavigate();
+  /* Theme */
   const [theme, setThemeMode] = useTheme({
     localStorageKey: "theme-mode",
   });
+  /* Title */
   const [title, setTitle] = useLocalStorageState("app-title", {
-    defaultValue: "App Template",
+    defaultValue: t("Titlebar.default.title"),
   });
   return (
     <>
-      <ThemeContext.Provider value={{ theme, setThemeMode }}>
-        <TitleContext.Provider value={{ title, setTitle }}>
-          <NavigatorContext.Provider value={{ navigator: navigate }}>
-            <main id="app-main">
-              <Titlebar />
-              <CommandDialog />
+      <I18nContext.Provider value={{ lang, t, setLang: setLanguage }}>
+        <ThemeContext.Provider value={{ theme, setThemeMode }}>
+          <TitleContext.Provider value={{ title, setTitle }}>
+            <NavigatorContext.Provider value={{ navigator: navigate }}>
+              <main id="app-main">
+                <Titlebar />
+                <CommandDialog />
 
-              <div id="container">
-                <ScrollArea className="container-scroller">
-                  <Routes>
-                    <Route path="/" index element={<Home />} />
-                    <Route path="/settings" element={<Settings />} />
-                  </Routes>
-                </ScrollArea>
-              </div>
-            </main>
-            <Toaster richColors position="bottom-right" />
-          </NavigatorContext.Provider>
-        </TitleContext.Provider>
-      </ThemeContext.Provider>
+                <div id="container">
+                  <ScrollArea className="container-scroller">
+                    <Routes>
+                      <Route path="/" index element={<Home />} />
+                      <Route path="/settings" element={<Settings />} />
+                    </Routes>
+                  </ScrollArea>
+                </div>
+              </main>
+              <Toaster richColors position="bottom-right" />
+            </NavigatorContext.Provider>
+          </TitleContext.Provider>
+        </ThemeContext.Provider>
+      </I18nContext.Provider>
     </>
   );
 }

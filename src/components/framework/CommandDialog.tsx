@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Calendar, Flashlight, Home, Settings, Zap } from "lucide-react";
+import { Home, Settings, Zap } from "lucide-react";
 
 import {
   CommandDialog,
@@ -16,8 +16,10 @@ import {
 import { useThrottleFn } from "ahooks";
 
 import { NavigatorContext } from "@/App";
+import { useI18n } from "@/composables/useI18n";
 
 export default function CommandMenu() {
+  const { t } = useI18n();
   const [open, setOpen] = React.useState(false);
   const { navigator } = React.useContext(NavigatorContext);
 
@@ -51,28 +53,28 @@ export default function CommandMenu() {
   return (
     <>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder={t("Command.placeholder")} />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
+          <CommandEmpty>{t("Command.notFound")}</CommandEmpty>
+          <CommandGroup heading={t("Command.suggestions")}>
             <CommandItem
               value="reload"
               onSelect={handleCommandSelect}
               keywords={["reload", "refresh", "重新加载", "刷新"]}
             >
               <Zap />
-              <span>重新加载本应用</span>
+              <span>{t("Command.suggestions.reload")}</span>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="转到">
+          <CommandGroup heading={t("Command.turnto")}>
             <CommandItem
               value="navigate::/"
               onSelect={handleCommandSelect}
               keywords={["home", "index", "首页", "主页"]}
             >
               <Home />
-              <span>首页</span>
+              <span>{t("Command.turnto.home")}</span>
               <CommandShortcut>⌘H</CommandShortcut>
             </CommandItem>
             <CommandItem
@@ -81,7 +83,7 @@ export default function CommandMenu() {
               keywords={["settings", "设置", "配置", "选项", "preferences"]}
             >
               <Settings />
-              <span>设置</span>
+              <span>{t("Command.turnto.settings")}</span>
               <CommandShortcut>⌘S</CommandShortcut>
             </CommandItem>
           </CommandGroup>

@@ -13,9 +13,14 @@ import TitlebarOperations, {
 import { useContext } from "react";
 import { ThemeContext, NavigatorContext } from "@/App";
 import TitlebarTitle from "./TitlebarTitle";
+import { useI18n } from "@/composables/useI18n";
 
 export default function Titlebar() {
+  /* I18n */
+  const { t } = useI18n();
+  /* Theme */
   const { theme, setThemeMode } = useContext(ThemeContext);
+  /* Navigator */
   const { navigator } = useContext(NavigatorContext);
 
   function toggleTheme() {
@@ -30,7 +35,9 @@ export default function Titlebar() {
     <div className="title-bar-main" data-tauri-drag-region>
       <Menubar className="menu-bar-main">
         <MenubarMenu>
-          <MenubarTrigger className="menu-bar-menu">转到</MenubarTrigger>
+          <MenubarTrigger className="menu-bar-menu">
+            {t("Titlebar.menu.turnto")}
+          </MenubarTrigger>
           <MenubarContent className="menu-bar-content">
             <MenubarItem
               className="menu-bar-item"
@@ -38,7 +45,7 @@ export default function Titlebar() {
                 navigator("/");
               }}
             >
-              首页
+              {t("Titlebar.menu.turnto.home")}
             </MenubarItem>
             <MenubarItem
               className="menu-bar-item"
@@ -46,21 +53,29 @@ export default function Titlebar() {
                 navigator("/settings");
               }}
             >
-              设置
+              {t("Titlebar.menu.turnto.settings")}
             </MenubarItem>
             <MenubarSeparator />
             <MenubarItem className="menu-bar-item" onSelect={toggleTheme}>
-              <span className="text">模式切换</span>
+              <span className="text">{t("Titlebar.menu.turnto.theme")}</span>
               <ThemeIcon />
             </MenubarItem>
-            <MenubarItem className="menu-bar-item">退出</MenubarItem>
+            <MenubarItem className="menu-bar-item">
+              {t("Titlebar.menu.turnto.exit")}
+            </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger className="menu-bar-menu">关于</MenubarTrigger>
+          <MenubarTrigger className="menu-bar-menu">
+            {t("Titlebar.menu.about")}
+          </MenubarTrigger>
           <MenubarContent className="menu-bar-content">
-            <MenubarItem className="menu-bar-item">软件</MenubarItem>
-            <MenubarItem className="menu-bar-item">框架</MenubarItem>
+            <MenubarItem className="menu-bar-item">
+              {t("Titlebar.menu.about.software")}
+            </MenubarItem>
+            <MenubarItem className="menu-bar-item">
+              {t("Titlebar.menu.about.framework")}
+            </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
       </Menubar>
