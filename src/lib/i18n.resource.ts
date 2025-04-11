@@ -9,6 +9,10 @@ export const I18nTexts = {
     "Titlebar.menu.about": "About",
     "Titlebar.menu.about.software": "Software",
     "Titlebar.menu.about.framework": "Framework",
+    "Titlebar.operations.theme.tooltip": "Theme mode",
+    "Titlebar.operations.minimize.tooltip": "Minimize",
+    "Titlebar.operations.close.tooltip": "Close",
+    "Titlebar.operations.always-on-top.tooltip": "Always on top",
 
     "Command.placeholder": "Type a command or search...",
     "Command.notFound": "No result found",
@@ -35,6 +39,10 @@ export const I18nTexts = {
     "Titlebar.menu.about": "关于",
     "Titlebar.menu.about.software": "软件",
     "Titlebar.menu.about.framework": "框架",
+    "Titlebar.operations.theme.tooltip": "主题模式",
+    "Titlebar.operations.minimize.tooltip": "最小化",
+    "Titlebar.operations.close.tooltip": "关闭",
+    "Titlebar.operations.always-on-top.tooltip": "窗口置顶",
 
     "Command.placeholder": "键入命令或搜索...",
     "Command.notFound": "未找到结果",

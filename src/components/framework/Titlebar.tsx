@@ -13,7 +13,7 @@ import TitlebarOperations, {
 import { useContext } from "react";
 import { ThemeContext, NavigatorContext } from "@/App";
 import TitlebarTitle from "./TitlebarTitle";
-import { useI18n } from "@/composables/useI18n";
+import { useI18n } from "@/composables";
 
 export default function Titlebar() {
   /* I18n */

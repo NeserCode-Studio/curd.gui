@@ -12,13 +12,29 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "app-template",
         "width": 800,
         "height": 600,
         "minWidth": 800,
         "minHeight": 600,
         "decorations": false,
-        "resizable": false
+        "resizable": false,
+        "visible": true,
+        "focus": true
+      },
+      {
+        "label": "tray",
+        "url": "/tray",
+        "title": "Tray Menu",
+        "skipTaskbar": true,
+        "decorations": false,
+        "dragDropEnabled": false,
+        "center": false,
+        "visible": false,
+        "resizable": false,
+        "width": 200,
+        "height": 200
       }
     ],
     "security": {

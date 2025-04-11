@@ -11,13 +11,13 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { useContext } from "react";
+import { useI18n } from "@/composables";
 
 import type {
   SettingInputItemProps,
   SettingSelectItemItem,
   SettingSelectItemProps,
 } from "@/shared";
-import { useI18n } from "@/composables/useI18n";
 
 export function SettingInputItem({
   type,
@@ -102,7 +102,7 @@ export default function Settings() {
   const langItems: SettingSelectItemItem[] = [
     {
       value: "en-US",
-      label: "English",
+      label: "English(US)",
     },
     {
       value: "zh-CN",

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Home, Settings, Zap } from "lucide-react";
+import { Home, Settings, RefreshCcw } from "lucide-react";
 
 import {
   CommandDialog,
@@ -16,7 +16,7 @@ import {
 import { useThrottleFn } from "ahooks";
 
 import { NavigatorContext } from "@/App";
-import { useI18n } from "@/composables/useI18n";
+import { useI18n } from "@/composables";
 
 export default function CommandMenu() {
   const { t } = useI18n();
@@ -62,7 +62,7 @@ export default function CommandMenu() {
               onSelect={handleCommandSelect}
               keywords={["reload", "refresh", "重新加载", "刷新"]}
             >
-              <Zap />
+              <RefreshCcw />
               <span>{t("Command.suggestions.reload")}</span>
             </CommandItem>
           </CommandGroup>

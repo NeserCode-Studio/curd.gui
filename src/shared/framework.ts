@@ -1,3 +1,5 @@
+import { PropsWithChildren } from "react";
+
 export interface I18nTranslateOptions {
   lang?: string;
   key?: string;
@@ -14,3 +16,7 @@ export type TitlebarOperationType =
   | "close"
   | "theme"
   | "always-on-top";
+
+export type TooltipProps = PropsWithChildren<{
+  content: string;
+}>;

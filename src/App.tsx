@@ -9,11 +9,10 @@ import Home from "@/views/Home";
 import Settings from "@/views/Settings";
 
 import { useNavigate } from "react-router";
-import { useTheme } from "./composables";
+import { useTheme, I18nContext, useI18nLogic } from "./composables";
 import { createContext } from "react";
 import { ScrollArea } from "./components/ui/scroll-area";
 import { useLocalStorageState } from "ahooks";
-import { I18nContext, useI18nLogic } from "@/composables/useI18n";
 
 import type { UseThemeFnReturn } from "./shared";
 

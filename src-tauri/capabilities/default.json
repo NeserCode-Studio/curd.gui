@@ -2,9 +2,7 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": [
-    "main"
-  ],
+  "windows": ["main"],
   "permissions": [
     "core:app:default",
     "shell:allow-open",
@@ -13,6 +11,8 @@
     "core:window:allow-minimize",
     "core:window:allow-close",
     "core:window:allow-start-dragging",
+    "core:window:allow-is-focused",
+    "core:window:allow-set-focus",
     {
       "identifier": "http:default",
       "allow": [

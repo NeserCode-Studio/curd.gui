@@ -1,3 +1,5 @@
+import { Tooltip } from "./Tooltip";
+
 import {
   MinusIcon,
   XMarkIcon,
@@ -12,6 +14,7 @@ import { useLocalStorageState } from "ahooks";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 
 import type { TitlebarOperationType } from "@/shared";
+import { useI18n } from "@/composables";
 
 const currentWindow = getCurrentWindow();
 
@@ -48,6 +51,7 @@ async function handleOperation(
 }
 
 export default function TitlebarOperations() {
+  const { t } = useI18n();
   const { theme, setThemeMode } = useContext(ThemeContext);
   const [alwaysOnTop, setAlwaysOnTop] = useLocalStorageState(
     "app-always-on-top",
@@ -64,42 +68,50 @@ export default function TitlebarOperations() {
     <>
       <div className="title-bar-operations">
         <Separator orientation="vertical" className="separator" />
-        <span
-          className={[alwaysOnTop ? "pinned" : "", "operation"].join(" ")}
-          onMouseUp={() => {
-            handleOperation("always-on-top", setAlwaysOnTop, !alwaysOnTop);
-          }}
-        >
-          <PaperClipIcon className="icon" />
-        </span>
-        <span
-          className="operation"
-          onMouseUp={() => {
-            handleOperation(
-              "theme",
-              setThemeMode,
-              theme === "dark" ? "light" : "dark"
-            );
-          }}
-        >
-          <ThemeIcon />
-        </span>
-        <span
-          className="operation"
-          onMouseUp={() => {
-            handleOperation("minimize");
-          }}
-        >
-          <MinusIcon className="icon" />
-        </span>
-        <span
-          className="operation"
-          onMouseUp={() => {
-            handleOperation("close");
-          }}
-        >
-          <XMarkIcon className="icon" />
-        </span>
+        <Tooltip content={t("Titlebar.operations.always-on-top.tooltip")}>
+          <span
+            className={[alwaysOnTop ? "pinned" : "", "operation"].join(" ")}
+            onMouseUp={() => {
+              handleOperation("always-on-top", setAlwaysOnTop, !alwaysOnTop);
+            }}
+          >
+            <PaperClipIcon className="icon" />
+          </span>
+        </Tooltip>
+        <Tooltip content={t("Titlebar.operations.theme.tooltip")}>
+          <span
+            className="operation"
+            onMouseUp={() => {
+              handleOperation(
+                "theme",
+                setThemeMode,
+                theme === "dark" ? "light" : "dark"
+              );
+            }}
+          >
+            <ThemeIcon />
+          </span>
+        </Tooltip>
+        <Tooltip content={t("Titlebar.operations.minimize.tooltip")}>
+          <span
+            className="operation"
+            onMouseUp={() => {
+              handleOperation("minimize");
+            }}
+          >
+            <MinusIcon className="icon" />
+          </span>
+        </Tooltip>
+        <Tooltip content={t("Titlebar.operations.close.tooltip")}>
+          <span
+            className="operation"
+            onMouseUp={() => {
+              handleOperation("close");
+            }}
+          >
+            <XMarkIcon className="icon" />
+          </span>
+        </Tooltip>
       </div>
     </>
   );
