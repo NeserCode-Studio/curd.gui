@@ -69,7 +69,7 @@ function App() {
                   </ScrollArea>
                 </div>
               </main>
-              <Toaster richColors position="bottom-right" />
+              <Toaster richColors theme={theme} position="bottom-right" />
             </NavigatorContext.Provider>
           </TitleContext.Provider>
         </ThemeContext.Provider>

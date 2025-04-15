@@ -2,23 +2,22 @@
   @apply fixed top-0 w-screen h-8 flex flex-row justify-between items-center pl-2
     bg-white dark:bg-black
     border-b border-neutral-400 dark:border-neutral-600 shadow-sm
-    transition-colors ease-in-out duration-100 z-50;
+    transition-all ease-in-out duration-100 z-50;
 
   .menu-bar-main {
     @apply w-fit h-full
     border-0 shadow-none
     text-neutral-600 dark:text-neutral-200
-    transition-colors ease-in-out duration-100;
+    transition-all ease-in-out duration-100;
 
     .menu-bar-menu {
       @apply h-full w-fit
-      text-sm
-      transition-colors ease-in-out duration-100;
+      text-sm;
     }
 
     .menu-bar-content {
       @apply w-fit
-      transition-colors ease-in-out duration-100;
+      transition-all ease-in-out duration-100;
     }
   }
 
@@ -35,6 +34,7 @@
       @apply w-fit h-full inline-flex justify-center items-center px-2.5 py-0.5
       hover:bg-neutral-200 dark:hover:bg-neutral-600 
       last:hover:bg-red-400 dark:last:hover:bg-red-600
+      transition-colors ease-in-out duration-100 delay-0
       cursor-pointer;
 
       .icon {

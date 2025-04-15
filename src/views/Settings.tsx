@@ -1,104 +1,38 @@
 import { TitleContext } from "@/App";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-  SelectGroup,
-  SelectLabel,
-} from "@/components/ui/select";
+import { useLocalStorageState } from "ahooks";
 import { useContext } from "react";
-import { useI18n } from "@/composables";
+import { useI18n, useToast } from "@/composables";
+import {
+  SettingInputItem,
+  SettingOptionalItem,
+  SettingSelectItem,
+  SettingItemGroup,
+} from "@/components/SettingItems";
 
-import type {
-  SettingInputItemProps,
-  SettingSelectItemItem,
-  SettingSelectItemProps,
-} from "@/shared";
-
-export function SettingInputItem({
-  type,
-  placeholder,
-  onItemSubmit,
-  submit,
-  value,
-}: SettingInputItemProps) {
-  const { t } = useI18n();
-
-  return (
-    <form action={onItemSubmit} className="setting-input-item setting-item">
-      <Input
-        type={type}
-        placeholder={
-          placeholder ?? t("Settings.items.input.default.placeholder")
-        }
-        name="input"
-        defaultValue={value}
-      />
-      <Button type="submit">
-        {submit ?? t("Settings.items.input.default.submit")}
-      </Button>
-    </form>
-  );
-}
-
-export function SettingSelectItem({
-  placeholder,
-  onItemSubmit,
-  onItemChange,
-  submit,
-  label,
-  items,
-  value,
-}: SettingSelectItemProps) {
-  const { t } = useI18n();
-
-  return (
-    <form action={onItemSubmit} className="setting-select-item setting-item">
-      <Select
-        name="select"
-        onValueChange={onItemChange}
-        defaultValue={value?.value}
-      >
-        <SelectTrigger className="trigger">
-          <SelectValue
-            placeholder={
-              placeholder ?? t("Settings.items.select.default.placeholder")
-            }
-          />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>
-              {label ?? t("Settings.items.select.default.label")}
-            </SelectLabel>
-            {items?.map((item) => (
-              <SelectItem key={item.value} value={item.value}>
-                {item.label}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <Button type="submit">
-        {submit ?? t("Settings.items.select.default.submit")}
-      </Button>
-    </form>
-  );
-}
+import type { SettingSelectItemItem } from "@/shared";
 
 export default function Settings() {
   const { t, setLang, lang } = useI18n();
   const { title, setTitle } = useContext(TitleContext);
+  const [autoComplete, setAutoComplete] = useLocalStorageState(
+    "use-auto-complete",
+    {
+      defaultValue: true,
+    }
+  );
+  const { success, error } = useToast({
+    duration: 2000,
+  });
 
+  /* setting title item */
   const titleAction = (data: FormData) => {
-    if (!data || !data.get("input") || data.get("input") === title) return;
+    if (!data || !data.get("input") || data.get("input") === title)
+      return error("Settings.items.title.error");
     setTitle(data.get("input") as string);
+    success("Settings.items.title.success");
   };
 
+  /* setting lang item */
   const langItems: SettingSelectItemItem[] = [
     {
       value: "en-US",
@@ -110,24 +44,67 @@ export default function Settings() {
     },
   ];
   const langAction = (data: FormData) => {
-    if (!data || !data.get("select") || data.get("select") === lang) return;
-    console.log(data.get("select") as string, 1);
+    if (!data || !data.get("select") || data.get("select") === lang)
+      return error("Settings.items.lang.error");
 
     setLang(data.get("select") as string);
+    success("Settings.items.lang.success");
   };
+
+  /* setting auto-complete item */
+  const autoCompleteAction = (checked: boolean) => {
+    setAutoComplete(checked);
+    success("Settings.items.auto-complete.success");
+  };
+
   return (
     <div className="view-settings">
-      <SettingInputItem
-        type="text"
-        value={title ?? ""}
-        onItemSubmit={titleAction}
-      />
-      <SettingSelectItem
-        items={langItems}
-        value={langItems.find((i) => i.value === lang)}
-        label={t("Settings.items.lang.label")}
-        onItemSubmit={langAction}
-      />
+      <SettingItemGroup
+        title={t("Settings.groups.examples.title")}
+        description={t("Settings.groups.examples.description")}
+      >
+        <SettingInputItem
+          type="text"
+          value={title ?? ""}
+          placeholder="键入自定义标题"
+          onItemSubmit={titleAction}
+        />
+        <SettingSelectItem
+          items={langItems}
+          value={langItems.find((i) => i.value === lang)}
+          label={t("Settings.items.lang.label")}
+          onItemSubmit={langAction}
+        />
+        <SettingOptionalItem
+          label={t("Settings.items.auto-complete.label")}
+          value={autoComplete}
+          id="optional.auto-complete"
+          onItemChange={autoCompleteAction}
+        />
+      </SettingItemGroup>
+      <SettingItemGroup
+        title={t("Settings.groups.examples.title")}
+        description={t("Settings.groups.examples.description")}
+      >
+        <SettingInputItem
+          type="text"
+          value={title ?? ""}
+          placeholder="键入自定义标题"
+          onItemSubmit={titleAction}
+        />
+        <SettingSelectItem
+          items={langItems}
+          value={langItems.find((i) => i.value === lang)}
+          label={t("Settings.items.lang.label")}
+          onItemSubmit={langAction}
+        />
+        <SettingOptionalItem
+          label={t("Settings.items.auto-complete.label")}
+          value={autoComplete}
+          id="optional.auto-complete"
+          onItemChange={autoCompleteAction}
+        />
+      </SettingItemGroup>
     </div>
   );
 }

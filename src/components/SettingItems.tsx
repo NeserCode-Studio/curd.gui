@@ -1,0 +1,135 @@
+import { useI18n } from "@/composables";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+  SelectItem,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { useLocalStorageState } from "ahooks";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import type {
+  SettingInputItemProps,
+  SettingSelectItemProps,
+  SettingOptionalItemProps,
+  SettingItemGroup,
+} from "@/shared";
+
+export function SettingItemGroup({
+  title,
+  description,
+  children,
+}: SettingItemGroup) {
+  return (
+    <div className="setting-item-group">
+      <span className="group-info">
+        <span className="title">{title}</span>
+        <span className="description">{description}</span>
+      </span>
+      <div className="group-main">{children}</div>
+    </div>
+  );
+}
+
+export function SettingInputItem({
+  type,
+  placeholder,
+  onItemSubmit,
+  submit,
+  value,
+}: SettingInputItemProps) {
+  const { t } = useI18n();
+  const [autoComplete] = useLocalStorageState("use-auto-complete", {
+    defaultValue: true,
+    listenStorageChange: true,
+  });
+
+  return (
+    <form action={onItemSubmit} className="setting-input-item setting-item">
+      <Input
+        type={type}
+        placeholder={
+          placeholder ?? t("Settings.items.input.default.placeholder")
+        }
+        autoComplete={autoComplete ? "on" : "off"}
+        name="input"
+        defaultValue={value}
+        className="main"
+      />
+      <Button type="submit">
+        {submit ?? t("Settings.items.input.default.submit")}
+      </Button>
+    </form>
+  );
+}
+
+export function SettingSelectItem({
+  placeholder,
+  onItemSubmit,
+  onItemChange,
+  submit,
+  label,
+  items,
+  value,
+}: SettingSelectItemProps) {
+  const { t } = useI18n();
+
+  return (
+    <form action={onItemSubmit} className="setting-select-item setting-item">
+      <Select
+        name="select"
+        onValueChange={onItemChange}
+        defaultValue={value?.value}
+      >
+        <SelectTrigger className="trigger">
+          <SelectValue
+            placeholder={
+              placeholder ?? t("Settings.items.select.default.placeholder")
+            }
+          />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>
+              {label ?? t("Settings.items.select.default.label")}
+            </SelectLabel>
+            {items?.map((item) => (
+              <SelectItem key={item.value} value={item.value}>
+                {item.label}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Button type="submit">
+        {submit ?? t("Settings.items.select.default.submit")}
+      </Button>
+    </form>
+  );
+}
+
+export function SettingOptionalItem({
+  onItemChange,
+  id,
+  label,
+  value,
+}: SettingOptionalItemProps) {
+  return (
+    <form className="setting-optional-item setting-item">
+      <span className="main">
+        <Checkbox
+          onCheckedChange={onItemChange}
+          defaultChecked={value}
+          id={id}
+          name="optional"
+        />
+        <Label htmlFor={id}>{label}</Label>
+      </span>
+    </form>
+  );
+}

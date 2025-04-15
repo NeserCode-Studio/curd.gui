@@ -22,12 +22,26 @@ export const I18nTexts = {
     "Command.turnto.home": "Home",
     "Command.turnto.settings": "Settings",
 
+    "Settings.groups.examples.title": "Examples",
+    "Settings.groups.examples.description":
+      "This is an example of setting items",
+
     "Settings.items.input.default.submit": "Submit",
     "Settings.items.input.default.placeholder": "Type something...",
     "Settings.items.select.default.submit": "Submit",
     "Settings.items.select.default.placeholder": "Select one",
     "Settings.items.select.default.label": "Items",
+    "Settings.items.optional.default.submit": "Submit",
+
     "Settings.items.lang.label": "Language",
+    "Settings.items.auto-complete.label": "Open auto-complete",
+
+    "Settings.items.lang.success": "Language changed successfully",
+    "Settings.items.lang.error": "Failed to change language, maybe do not need",
+    "Settings.items.title.success": "Title changed successfully",
+    "Settings.items.title.error": "Failed to change title, maybe do not need",
+    "Settings.items.auto-complete.success":
+      "Auto-complete changed successfully",
   },
   "zh-CN": {
     "Titlebar.default.title": "应用模板",
@@ -52,11 +66,23 @@ export const I18nTexts = {
     "Command.turnto.home": "首页",
     "Command.turnto.settings": "设置",
 
+    "Settings.groups.examples.title": "示例",
+    "Settings.groups.examples.description": "这是设置项的示例",
+
     "Settings.items.input.default.submit": "提交",
     "Settings.items.input.default.placeholder": "输入内容...",
     "Settings.items.select.default.submit": "提交",
     "Settings.items.select.default.placeholder": "选择项",
     "Settings.items.select.default.label": "项",
+    "Settings.items.optional.default.submit": "提交",
+
     "Settings.items.lang.label": "语言",
+    "Settings.items.auto-complete.label": "开启自动补全",
+
+    "Settings.items.lang.success": "已应用语言",
+    "Settings.items.lang.error": "应用语言失败，或许无需更改",
+    "Settings.items.title.success": "已应用标题",
+    "Settings.items.title.error": "应用标题失败，或许无需更改",
+    "Settings.items.auto-complete.success": "自动补全更改已应用",
   },
 };

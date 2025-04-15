@@ -1,11 +1,14 @@
 export type SettingInputItemType = "text" | "email" | "password" | "number";
 
+export interface SettingItemGroup extends React.PropsWithChildren<{}> {
+  title: string;
+  description?: string;
+}
+
 export interface SettingItemProps {
   label?: string;
   title?: string;
   description?: string;
-  onItemChange?: (value: string) => void;
-  onItemSubmit?: (data: FormData) => void;
 }
 
 export interface SettingInputItemProps extends SettingItemProps {
@@ -13,6 +16,9 @@ export interface SettingInputItemProps extends SettingItemProps {
   value: string;
   placeholder?: string;
   submit?: string;
+
+  onItemChange?: (value: string) => void;
+  onItemSubmit?: (data: FormData) => void;
 }
 
 export type SettingSelectItemItem = {
@@ -24,4 +30,15 @@ export interface SettingSelectItemProps extends SettingItemProps {
   value?: SettingSelectItemItem;
   placeholder?: string;
   submit?: string;
+
+  onItemChange?: (value: string) => void;
+  onItemSubmit?: (data: FormData) => void;
+}
+
+export interface SettingOptionalItemProps extends SettingItemProps {
+  label: string;
+  id: string;
+
+  value?: boolean;
+  onItemChange: (value: boolean) => void;
 }

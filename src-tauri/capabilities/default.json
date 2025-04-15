@@ -6,6 +6,11 @@
   "permissions": [
     "core:app:default",
     "shell:allow-open",
+    "core:window:allow-get-all-windows",
+    "core:window:default",
+    "core:window:allow-request-user-attention",
+    "core:window:allow-show",
+    "core:window:allow-hide",
     "core:window:allow-set-always-on-top",
     "core:window:allow-set-always-on-bottom",
     "core:window:allow-minimize",

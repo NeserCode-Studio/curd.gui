@@ -7,7 +7,7 @@ import {
 export class WindowUtils {
   private $window: Window | undefined;
   private $current: Window;
-  constructor(label: string) {
+  constructor(label?: string) {
     this.$current = getCurrentWindow();
     getAllWindows()
       .then((windows) => {
@@ -23,6 +23,7 @@ export class WindowUtils {
       // await w.setAlwaysOnTop(true);
       await w.show();
       await w.setFocus();
+      await w.requestUserAttention(1);
       // await w.setAlwaysOnTop(false);
     };
 

@@ -1,3 +1,7 @@
+button {
+  @apply cursor-pointer;
+}
+
 #app-main {
   @apply w-screen h-screen flex flex-row justify-center items-center;
 }
@@ -27,13 +31,47 @@
 .view-settings {
   @apply w-full h-full flex flex-col items-center justify-start pt-8 gap-4;
 
+  .setting-item-group {
+    @apply max-w-96 w-full flex flex-col justify-center items-start gap-4 not-last:pb-4
+    not-last:border-b border-dashed border-neutral-400 dark:border-neutral-500
+    transition-colors ease-in-out duration-100 delay-0;
+
+    .group-info {
+      @apply w-full inline-flex flex-col justify-center items-start gap-1
+      transition-colors ease-in-out duration-100 delay-0;
+
+      .title {
+        @apply font-semibold text-xl;
+      }
+      .description {
+        @apply font-normal text-sm opacity-60;
+      }
+    }
+    .group-main {
+      @apply w-full flex flex-col justify-center items-center gap-4;
+    }
+  }
+
   .setting-item {
-    @apply max-w-60 w-fit inline-flex justify-center items-center gap-2;
+    @apply w-full inline-flex justify-between items-center gap-2 p-1
+    transition-colors ease-in-out duration-100 delay-0;
+  }
+
+  .setting-input-item {
+    .main {
+      @apply max-w-48;
+    }
   }
 
   .setting-select-item {
     .trigger {
       @apply w-36;
+    }
+  }
+
+  .setting-optional-item {
+    .main {
+      @apply inline-flex items-center justify-center gap-2;
     }
   }
 }
