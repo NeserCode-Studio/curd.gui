@@ -68,18 +68,24 @@ export default function Settings() {
           value={title ?? ""}
           placeholder="键入自定义标题"
           onItemSubmit={titleAction}
+          title={t("Settings.items.title.title")}
+          description={t("Settings.items.title.description")}
         />
         <SettingSelectItem
           items={langItems}
           value={langItems.find((i) => i.value === lang)}
           label={t("Settings.items.lang.label")}
           onItemSubmit={langAction}
+          title={t("Settings.items.lang.title")}
+          description={t("Settings.items.lang.description")}
         />
         <SettingOptionalItem
           label={t("Settings.items.auto-complete.label")}
           value={autoComplete}
           id="optional.auto-complete"
           onItemChange={autoCompleteAction}
+          title={t("Settings.items.auto-complete.title")}
+          description={t("Settings.items.auto-complete.description")}
         />
       </SettingItemGroup>
       <SettingItemGroup
@@ -91,18 +97,24 @@ export default function Settings() {
           value={title ?? ""}
           placeholder="键入自定义标题"
           onItemSubmit={titleAction}
+          title={t("Settings.items.title.title")}
+          description={t("Settings.items.title.description")}
         />
         <SettingSelectItem
           items={langItems}
           value={langItems.find((i) => i.value === lang)}
           label={t("Settings.items.lang.label")}
           onItemSubmit={langAction}
+          title={t("Settings.items.lang.title")}
+          description={t("Settings.items.lang.description")}
         />
         <SettingOptionalItem
           label={t("Settings.items.auto-complete.label")}
           value={autoComplete}
           id="optional.auto-complete"
           onItemChange={autoCompleteAction}
+          title={t("Settings.items.auto-complete.title")}
+          description={t("Settings.items.auto-complete.description")}
         />
       </SettingItemGroup>
     </div>

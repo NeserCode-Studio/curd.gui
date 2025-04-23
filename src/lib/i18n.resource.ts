@@ -22,6 +22,8 @@ export const I18nTexts = {
     "Command.turnto.home": "Home",
     "Command.turnto.settings": "Settings",
 
+    "Home.title": "Home",
+
     "Settings.groups.examples.title": "Examples",
     "Settings.groups.examples.description":
       "This is an example of setting items",
@@ -33,13 +35,21 @@ export const I18nTexts = {
     "Settings.items.select.default.label": "Items",
     "Settings.items.optional.default.submit": "Submit",
 
-    "Settings.items.lang.label": "Language",
-    "Settings.items.auto-complete.label": "Open auto-complete",
+    "Settings.items.title.title": "Modify title",
+    "Settings.items.title.description":
+      "Change the title of the window which will using what you like",
+    "Settings.items.lang.title": "Change language",
+    "Settings.items.lang.description": "Use another language in the app",
+    "Settings.items.auto-complete.title": "Toggle auto-complete",
+    "Settings.items.auto-complete.description":
+      "Use Opening auto-complete that means you can chose item from suggestions",
 
-    "Settings.items.lang.success": "Language changed successfully",
-    "Settings.items.lang.error": "Failed to change language, maybe do not need",
     "Settings.items.title.success": "Title changed successfully",
     "Settings.items.title.error": "Failed to change title, maybe do not need",
+    "Settings.items.lang.success": "Language changed successfully",
+    "Settings.items.lang.error": "Failed to change language, maybe do not need",
+    "Settings.items.lang.label": "Language",
+    "Settings.items.auto-complete.label": "Open auto-complete",
     "Settings.items.auto-complete.success":
       "Auto-complete changed successfully",
   },
@@ -66,6 +76,8 @@ export const I18nTexts = {
     "Command.turnto.home": "首页",
     "Command.turnto.settings": "设置",
 
+    "Home.title": "首页",
+
     "Settings.groups.examples.title": "示例",
     "Settings.groups.examples.description": "这是设置项的示例",
 
@@ -76,13 +88,20 @@ export const I18nTexts = {
     "Settings.items.select.default.label": "项",
     "Settings.items.optional.default.submit": "提交",
 
-    "Settings.items.lang.label": "语言",
-    "Settings.items.auto-complete.label": "开启自动补全",
+    "Settings.items.title.title": "更换标题",
+    "Settings.items.title.description": "用自定义输入信息更换应用标题",
+    "Settings.items.lang.title": "更换语言",
+    "Settings.items.lang.description": "在应用中使用另外一种语言",
+    "Settings.items.auto-complete.title": "开启或关闭自动补全",
+    "Settings.items.auto-complete.description":
+      "开启使用自动补全意味着用户可以快速使用之前成功提交过的值",
 
-    "Settings.items.lang.success": "已应用语言",
-    "Settings.items.lang.error": "应用语言失败，或许无需更改",
     "Settings.items.title.success": "已应用标题",
     "Settings.items.title.error": "应用标题失败，或许无需更改",
+    "Settings.items.lang.success": "已应用语言",
+    "Settings.items.lang.error": "应用语言失败，或许无需更改",
+    "Settings.items.lang.label": "语言",
+    "Settings.items.auto-complete.label": "开启自动补全",
     "Settings.items.auto-complete.success": "自动补全更改已应用",
   },
 };

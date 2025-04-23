@@ -42,6 +42,8 @@ export function SettingInputItem({
   onItemSubmit,
   submit,
   value,
+  title,
+  description,
 }: SettingInputItemProps) {
   const { t } = useI18n();
   const [autoComplete] = useLocalStorageState("use-auto-complete", {
@@ -51,19 +53,23 @@ export function SettingInputItem({
 
   return (
     <form action={onItemSubmit} className="setting-input-item setting-item">
-      <Input
-        type={type}
-        placeholder={
-          placeholder ?? t("Settings.items.input.default.placeholder")
-        }
-        autoComplete={autoComplete ? "on" : "off"}
-        name="input"
-        defaultValue={value}
-        className="main"
-      />
-      <Button type="submit">
-        {submit ?? t("Settings.items.input.default.submit")}
-      </Button>
+      {title ? <span className="title">{title}</span> : null}
+      {description ? <span className="description">{description}</span> : null}
+      <span className="main">
+        <Input
+          type={type}
+          placeholder={
+            placeholder ?? t("Settings.items.input.default.placeholder")
+          }
+          autoComplete={autoComplete ? "on" : "off"}
+          name="input"
+          defaultValue={value}
+          className="main"
+        />
+        <Button type="submit">
+          {submit ?? t("Settings.items.input.default.submit")}
+        </Button>
+      </span>
     </form>
   );
 }
@@ -76,39 +82,45 @@ export function SettingSelectItem({
   label,
   items,
   value,
+  title,
+  description,
 }: SettingSelectItemProps) {
   const { t } = useI18n();
 
   return (
     <form action={onItemSubmit} className="setting-select-item setting-item">
-      <Select
-        name="select"
-        onValueChange={onItemChange}
-        defaultValue={value?.value}
-      >
-        <SelectTrigger className="trigger">
-          <SelectValue
-            placeholder={
-              placeholder ?? t("Settings.items.select.default.placeholder")
-            }
-          />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>
-              {label ?? t("Settings.items.select.default.label")}
-            </SelectLabel>
-            {items?.map((item) => (
-              <SelectItem key={item.value} value={item.value}>
-                {item.label}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <Button type="submit">
-        {submit ?? t("Settings.items.select.default.submit")}
-      </Button>
+      {title ? <span className="title">{title}</span> : null}
+      {description ? <span className="description">{description}</span> : null}
+      <span className="main">
+        <Select
+          name="select"
+          onValueChange={onItemChange}
+          defaultValue={value?.value}
+        >
+          <SelectTrigger className="trigger">
+            <SelectValue
+              placeholder={
+                placeholder ?? t("Settings.items.select.default.placeholder")
+              }
+            />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>
+                {label ?? t("Settings.items.select.default.label")}
+              </SelectLabel>
+              {items?.map((item) => (
+                <SelectItem key={item.value} value={item.value}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Button type="submit">
+          {submit ?? t("Settings.items.select.default.submit")}
+        </Button>
+      </span>
     </form>
   );
 }
@@ -118,9 +130,13 @@ export function SettingOptionalItem({
   id,
   label,
   value,
+  title,
+  description,
 }: SettingOptionalItemProps) {
   return (
     <form className="setting-optional-item setting-item">
+      {title ? <span className="title">{title}</span> : null}
+      {description ? <span className="description">{description}</span> : null}
       <span className="main">
         <Checkbox
           onCheckedChange={onItemChange}

@@ -9,7 +9,7 @@ import Home from "@/views/Home";
 import Settings from "@/views/Settings";
 
 import { useNavigate } from "react-router";
-import { useTheme, I18nContext, useI18nLogic } from "@/composables";
+import { useTheme, I18nContext, useI18nLogic, nextTick } from "@/composables";
 import { createContext, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocalStorageState } from "ahooks";
@@ -52,13 +52,16 @@ function App() {
     defaultValue: t("Titlebar.default.title"),
   });
 
-  /* App Tray */
-  const $tray = new AppTray({
-    tooltip: t("Tray.tooltip.default"),
-  });
   useEffect(() => {
-    const handleBeforeUnload = async () => {
-      await $tray.quit(); // 在页面刷新或关闭时销毁托盘
+    /* App Tray */
+    const $tray = new AppTray({
+      tooltip: t("Tray.tooltip.default"),
+    });
+    nextTick(() => {
+      $tray.init();
+    });
+    const handleBeforeUnload = () => {
+      $tray.quit();
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
