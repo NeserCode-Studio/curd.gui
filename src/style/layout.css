@@ -67,7 +67,7 @@ button {
       @apply font-normal text-sm opacity-60;
     }
 
-    .main {
+    .main:not(input) {
       @apply w-full inline-flex justify-between items-center gap-2 p-1
       transition-colors ease-in-out duration-100 delay-0;
     }
@@ -86,7 +86,7 @@ button {
   }
 
   .setting-optional-item {
-    .main {
+    span.main {
       @apply w-fit inline-flex items-center justify-center gap-2;
     }
   }
