@@ -30,4 +30,13 @@ export class WindowUtils {
     if (this.$window !== undefined) focusShow(this.$window);
     else focusShow(this.$current);
   }
+
+  static async windowsQuit() {
+    const windows = await getAllWindows().catch((reason) => {
+      console.log(`[Window:Error] Get Windows but ${reason}`);
+    });
+
+    if (windows && windows.length > 0)
+      windows.forEach(async (window) => window.close());
+  }
 }

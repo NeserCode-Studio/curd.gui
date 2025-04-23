@@ -15,6 +15,7 @@ import { getCurrentWindow } from "@tauri-apps/api/window";
 
 import type { TitlebarOperationType } from "@/shared";
 import { useI18n } from "@/composables";
+import { WindowUtils } from "@/lib/window.utils";
 
 const currentWindow = getCurrentWindow();
 
@@ -38,7 +39,7 @@ async function handleOperation(
       await currentWindow.minimize();
       break;
     case "close":
-      await currentWindow.close();
+      await WindowUtils.windowsQuit();
       break;
     case "theme":
       if (setter) setter(trigger ?? "light");

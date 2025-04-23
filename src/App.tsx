@@ -9,12 +9,13 @@ import Home from "@/views/Home";
 import Settings from "@/views/Settings";
 
 import { useNavigate } from "react-router";
-import { useTheme, I18nContext, useI18nLogic } from "./composables";
-import { createContext } from "react";
-import { ScrollArea } from "./components/ui/scroll-area";
+import { useTheme, I18nContext, useI18nLogic } from "@/composables";
+import { createContext, useEffect } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocalStorageState } from "ahooks";
+import { AppTray } from "@/lib/tray";
 
-import type { UseThemeFnReturn } from "./shared";
+import type { UseThemeFnReturn } from "@/shared";
 
 /* Context Provide */
 const ThemeContext = createContext<{
@@ -50,6 +51,21 @@ function App() {
   const [title, setTitle] = useLocalStorageState("app-title", {
     defaultValue: t("Titlebar.default.title"),
   });
+
+  /* App Tray */
+  const $tray = new AppTray({
+    tooltip: t("Tray.tooltip.default"),
+  });
+  useEffect(() => {
+    const handleBeforeUnload = async () => {
+      await $tray.quit(); // 在页面刷新或关闭时销毁托盘
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
   return (
     <>
       <I18nContext.Provider value={{ lang, t, setLang: setLanguage }}>

@@ -6,9 +6,9 @@ import { BrowserRouter } from "react-router";
 import { WindowUtils } from "@/lib/window.utils";
 import { nextTick } from "./composables";
 
-const w = new WindowUtils("main");
+const $windowMain = new WindowUtils("main");
 nextTick(() => {
-  w.renderFocus();
+  $windowMain.renderFocus();
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
