@@ -1,6 +1,5 @@
 import { TrayIcon, TrayIconOptions as tio } from "@tauri-apps/api/tray";
 import { defaultWindowIcon } from "@tauri-apps/api/app";
-import { nextTick } from "@/composables";
 
 export interface TrayIconOptions {
   icon?: tio["icon"];
@@ -67,9 +66,6 @@ export class AppTray {
   }
 
   async init() {
-    this.clearTrays();
-    console.log("[Tray::Init] Clear all trays", this.trayIds.items);
-
     if (this.trayIds.items.length > 0) return;
     this.tray = await TrayIcon.new({
       icon: this.options?.icon ?? (await defaultWindowIcon()) ?? undefined,

@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 import { useTheme, I18nContext, useI18nLogic, nextTick } from "@/composables";
 import { createContext, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useLocalStorageState } from "ahooks";
+import { useAsyncEffect, useLocalStorageState } from "ahooks";
 import { AppTray } from "@/lib/tray";
 
 import type { UseThemeFnReturn } from "@/shared";
@@ -52,22 +52,21 @@ function App() {
     defaultValue: t("Titlebar.default.title"),
   });
 
-  useEffect(() => {
+  useAsyncEffect(async () => {
     /* App Tray */
     const $tray = new AppTray({
       tooltip: t("Tray.tooltip.default"),
     });
     nextTick(() => {
       $tray.init();
+      console.log($tray);
     });
-    const handleBeforeUnload = () => {
-      $tray.quit();
+    const handleBeforeUnload = async () => {
+      window.removeEventListener("unload", handleBeforeUnload);
+      await $tray.quit();
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    window.addEventListener("unload", handleBeforeUnload);
   }, []);
   return (
     <>
