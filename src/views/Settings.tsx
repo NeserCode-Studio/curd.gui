@@ -1,7 +1,7 @@
 import { TitleContext } from "@/App";
 import { useLocalStorageState } from "ahooks";
 import { useContext } from "react";
-import { useI18n, useToast } from "@/composables";
+import { useI18n, useTheme, useToast } from "@/composables";
 import {
   SettingInputItem,
   SettingOptionalItem,
@@ -14,6 +14,7 @@ import type { SettingSelectItemItem } from "@/shared";
 export default function Settings() {
   const { t, setLang, lang } = useI18n();
   const { title, setTitle } = useContext(TitleContext);
+  const [theme, setTheme] = useTheme({ localStorageKey: "theme-mode" });
   const [autoComplete, setAutoComplete] = useLocalStorageState(
     "use-auto-complete",
     {
@@ -57,6 +58,11 @@ export default function Settings() {
     success("Settings.items.auto-complete.success");
   };
 
+  const themeAction = (checked: boolean) => {
+    setTheme(checked ? "dark" : "light");
+    success("Settings.items.theme.success", {});
+  };
+
   return (
     <div className="view-settings">
       <SettingItemGroup
@@ -87,34 +93,13 @@ export default function Settings() {
           title={t("Settings.items.auto-complete.title")}
           description={t("Settings.items.auto-complete.description")}
         />
-      </SettingItemGroup>
-      <SettingItemGroup
-        title={t("Settings.groups.examples.title")}
-        description={t("Settings.groups.examples.description")}
-      >
-        <SettingInputItem
-          type="text"
-          value={title ?? ""}
-          placeholder="键入自定义标题"
-          onItemSubmit={titleAction}
-          title={t("Settings.items.title.title")}
-          description={t("Settings.items.title.description")}
-        />
-        <SettingSelectItem
-          items={langItems}
-          value={langItems.find((i) => i.value === lang)}
-          label={t("Settings.items.lang.label")}
-          onItemSubmit={langAction}
-          title={t("Settings.items.lang.title")}
-          description={t("Settings.items.lang.description")}
-        />
         <SettingOptionalItem
-          label={t("Settings.items.auto-complete.label")}
-          value={autoComplete}
-          id="optional.auto-complete"
-          onItemChange={autoCompleteAction}
-          title={t("Settings.items.auto-complete.title")}
-          description={t("Settings.items.auto-complete.description")}
+          label={t("Settings.items.theme.label")}
+          value={theme === "dark"}
+          id="optional.theme"
+          onItemChange={themeAction}
+          title={t("Settings.items.theme.title")}
+          description={t("Settings.items.theme.description")}
         />
       </SettingItemGroup>
     </div>

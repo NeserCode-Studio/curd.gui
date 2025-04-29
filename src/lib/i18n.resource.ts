@@ -1,6 +1,15 @@
 export const I18nTexts = {
   "en-US": {
-    "Titlebar.default.title": "App Template",
+    "Button.default.submit": "Submit",
+    "Button.default.cancel": "Cancel",
+    "Button.default.close": "Close",
+    "Button.default.back": "Back",
+    "Button.default.next": "Next",
+
+    "Input.default.placeholder": "Type something...",
+    "Input.default.label": "Input",
+
+    "Titlebar.default.title": "CURD.GUI",
     "Titlebar.menu.turnto": "Turn to",
     "Titlebar.menu.turnto.home": "Home",
     "Titlebar.menu.turnto.settings": "Settings",
@@ -14,6 +23,8 @@ export const I18nTexts = {
     "Titlebar.operations.close.tooltip": "Close",
     "Titlebar.operations.always-on-top.tooltip": "Always on top",
 
+    "Sidebar.items.server.default": "Null server address",
+
     "Command.placeholder": "Type a command or search...",
     "Command.notFound": "No result found",
     "Command.suggestions": "Suggestions",
@@ -24,9 +35,8 @@ export const I18nTexts = {
 
     "Home.title": "Home",
 
-    "Settings.groups.examples.title": "Examples",
-    "Settings.groups.examples.description":
-      "This is an example of setting items",
+    "Settings.groups.examples.title": "Basic settings",
+    "Settings.groups.examples.description": "Basic settings for the app",
 
     "Settings.items.input.default.submit": "Submit",
     "Settings.items.input.default.placeholder": "Type something...",
@@ -43,6 +53,8 @@ export const I18nTexts = {
     "Settings.items.auto-complete.title": "Toggle auto-complete",
     "Settings.items.auto-complete.description":
       "Use Opening auto-complete that means you can chose item from suggestions",
+    "Settings.items.theme.title": "Change theme",
+    "Settings.items.theme.description": "Change the theme of the app",
 
     "Settings.items.title.success": "Title changed successfully",
     "Settings.items.title.error": "Failed to change title, maybe do not need",
@@ -52,9 +64,20 @@ export const I18nTexts = {
     "Settings.items.auto-complete.label": "Open auto-complete",
     "Settings.items.auto-complete.success":
       "Auto-complete changed successfully",
+    "Settings.items.theme.label": "Dark Theme",
+    "Settings.items.theme.success": "Theme changed successfully",
   },
   "zh-CN": {
-    "Titlebar.default.title": "应用模板",
+    "Button.default.submit": "提交",
+    "Button.default.cancel": "取消",
+    "Button.default.close": "关闭",
+    "Button.default.back": "返回",
+    "Button.default.next": "下一步",
+
+    "Input.default.placeholder": "输入内容...",
+    "Input.default.label": "输入",
+
+    "Titlebar.default.title": "CURD.GUI",
     "Titlebar.menu.turnto": "转到",
     "Titlebar.menu.turnto.home": "首页",
     "Titlebar.menu.turnto.settings": "设置",
@@ -68,6 +91,8 @@ export const I18nTexts = {
     "Titlebar.operations.close.tooltip": "关闭",
     "Titlebar.operations.always-on-top.tooltip": "窗口置顶",
 
+    "Sidebar.items.server.default": "未设置服务器地址",
+
     "Command.placeholder": "键入命令或搜索...",
     "Command.notFound": "未找到结果",
     "Command.suggestions": "建议",
@@ -78,8 +103,8 @@ export const I18nTexts = {
 
     "Home.title": "首页",
 
-    "Settings.groups.examples.title": "示例",
-    "Settings.groups.examples.description": "这是设置项的示例",
+    "Settings.groups.examples.title": "基本设置",
+    "Settings.groups.examples.description": "应用的基本设置",
 
     "Settings.items.input.default.submit": "提交",
     "Settings.items.input.default.placeholder": "输入内容...",
@@ -95,6 +120,8 @@ export const I18nTexts = {
     "Settings.items.auto-complete.title": "开启或关闭自动补全",
     "Settings.items.auto-complete.description":
       "开启使用自动补全意味着用户可以快速使用之前成功提交过的值",
+    "Settings.items.theme.title": "更换主题",
+    "Settings.items.theme.description": "更换应用的主题，适当缓解视觉疲劳",
 
     "Settings.items.title.success": "已应用标题",
     "Settings.items.title.error": "应用标题失败，或许无需更改",
@@ -103,5 +130,7 @@ export const I18nTexts = {
     "Settings.items.lang.label": "语言",
     "Settings.items.auto-complete.label": "开启自动补全",
     "Settings.items.auto-complete.success": "自动补全更改已应用",
+    "Settings.items.theme.label": "深色主题",
+    "Settings.items.theme.success": "主题更改已应用",
   },
 };
