@@ -68,6 +68,7 @@ function App() {
 
     window.addEventListener("unload", handleBeforeUnload);
   }, []);
+
   return (
     <>
       <I18nContext.Provider value={{ lang, t, setLang: setLanguage }}>

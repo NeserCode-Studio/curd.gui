@@ -19,7 +19,7 @@ import { useI18n } from "@/composables";
 import { useLocalStorageState } from "ahooks";
 
 export function HomeSidebar() {
-  const items = ["Person Model", "Product Model"];
+  const items = ["Person", "Product"];
   const [server, setServer] = useState("");
   const [edit, setEdit] = useState(false);
   const [activeModel, setActiveModel] = useState(items[0]);
@@ -36,18 +36,21 @@ export function HomeSidebar() {
 
   return (
     <Sidebar id="sidebar">
-      <SidebarHeader />
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupAction>
+      <SidebarHeader className="sidebar-header" />
+      <SidebarContent className="sidebar-content">
+        <SidebarGroup className="sidebar-group">
+          <SidebarGroupLabel className="sidebar-group-label">
+            Application
+          </SidebarGroupLabel>
+          <SidebarGroupAction className="sidebar-group-action">
             <Plus />
           </SidebarGroupAction>
-          <SidebarGroupContent>
-            <SidebarMenu>
+          <SidebarGroupContent className="sidebar-group-content">
+            <SidebarMenu className="sidebar-menu">
               {items.map((item) => (
-                <SidebarMenuItem key={item}>
+                <SidebarMenuItem key={item} className="sidebar-menu-item">
                   <SidebarMenuButton
+                    className="sidebar-menu-button"
                     isActive={activeModel === item}
                     onClick={() => setActiveModel(item)}
                   >
@@ -60,9 +63,9 @@ export function HomeSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-t">
-        <SidebarMenu>
-          <SidebarMenuItem>
+      <SidebarFooter className="sidebar-footer">
+        <SidebarMenu className="sidebar-menu">
+          <SidebarMenuItem className="sidebar-menu-item">
             {edit ? (
               <form action={serverSubmitAction} className="flex flex-col gap-2">
                 <Input
@@ -76,6 +79,7 @@ export function HomeSidebar() {
               </form>
             ) : (
               <SidebarMenuButton
+                className="sidebar-menu-button"
                 onClick={() => {
                   setEdit(true);
                 }}

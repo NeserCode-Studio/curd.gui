@@ -37,6 +37,20 @@
     "core:tray:default",
     "core:tray:allow-new",
     "core:resources:default",
-    "core:resources:allow-close"
+    "core:resources:allow-close",
+    "core:path:allow-resolve-directory",
+    "core:path:default",
+    "fs:default",
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        { "path": "$APPDATA" },
+        { "path": "$APPDATA/**" },
+        { "path": "$APPLOCALDATA" },
+        { "path": "$APPLOCALDATA/**" },
+        { "path": "$APP/**" },
+        { "path": "$APP" }
+      ]
+    }
   ]
 }

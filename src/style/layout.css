@@ -21,6 +21,27 @@ button {
 
 #sidebar {
   @apply pt-2;
+
+  .sidebar-header {
+  }
+  .sidebar-content {
+    .sidebar-group {
+      .sidebar-group-content {
+      }
+    }
+  }
+  .sidebar-footer {
+  }
+
+  .sidebar-menu {
+    .sidebar-menu-item {
+      .sidebar-menu-button {
+        @apply opacity-60 data-[active=true]:opacity-100 
+        data-[active=true]:bg-green-200 dark:data-[active=true]:bg-green-700
+        transition-colors ease-in-out duration-100 delay-0;
+      }
+    }
+  }
 }
 
 .view-home,
